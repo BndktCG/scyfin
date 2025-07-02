@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Apply Poppins to all elements */
+body, html, button, input, textarea, select {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+
 /* Variables */
 :root {
     --primary-r: 0;
@@ -5,9 +13,9 @@
     --primary-b: 220;
     --primary-accent-color: rgba(var(--primary-r), var(--primary-g), var(--primary-b), 1.0);
     --secondary-accent-color: #00a4dc20;
-    --primary-background-color: #101010;
+    --primary-background-color: #000000;
     --secondary-background-color: #181818;
-    --primary-background-transparent: rgba(35,35,35,0.5);
+    --primary-background-transparent: rgb(42 42 42 / 50%);
     --secondary-background-transparent: rgba(0,0,0,0.6);
     --rounded-cards: 15px;
     --blur: 10px;
@@ -907,7 +915,7 @@ html,
 /* Padding for 1:1 posters */
 .layout-desktop .detailPageWrapperContainer:has(.detailImageContainer .squareCard) .detailPagePrimaryContent {
     min-height: 20vw !important;
-} 
+}
 /* Padding for 16:9 posters */
 .layout-desktop .detailPageWrapperContainer:has(.detailImageContainer .backdropCard) .detailPagePrimaryContent {
     min-height: 12vw !important;
@@ -1216,4 +1224,20 @@ html,
 .layout-desktop:has(.backgroundContainer.withBackdrop) .navMenuOption:hover:not(.navMenuOption-selected) {
     background: var(--primary-background-transparent) !important;
     backdrop-filter: blur(var(--blur)) !important;
+}
+
+
+.cardOverlayButton-br {
+    right: auto !important; /* Entfernt die Ausrichtung nach rechts */
+    left: 50% !important;   /* Platziert den linken Rand des Buttons in der Mitte */
+    transform: translateX(-50%) !important; /* Verschiebt den Button um die Hälfte seiner eigenen Breite nach links */
+}
+
+.itemAction.textActionButton {
+    font-weight: 600 !important;
+}
+
+/* Stellt den symmetrischen Abstand für den linken Header-Bereich her */
+.layout-desktop .headerLeft {
+    margin-left: 15px !important;
 }
