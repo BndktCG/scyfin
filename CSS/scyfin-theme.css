@@ -1242,7 +1242,57 @@ html,
     margin-left: 15px !important;
 }
 
-/* Fügt der gesamten Tableiste einen vertikalen Abstand hinzu */
-.tabs-viewmenubar.emby-tabs.focusable.scrollX {
-    margin-block: 15px !important; /* Fügt 15px oben UND unten hinzu */
+
+/*
+ * ===================================================================
+ * Header-Vereinheitlichung: Stellt sicher, dass alle drei Header-
+ * Elemente (links, mitte, rechts) identisch aussehen und ausgerichtet sind.
+ * ===================================================================
+ */
+
+/* Schritt 1: Ein einheitlicher Stil für alle drei "Pillen" */
+.layout-desktop .headerLeft,
+.layout-desktop .headerTabs,
+.layout-desktop .headerRight {
+    /* Aussehen der Pille */
+    background-color: var(--primary-background-transparent) !important;
+    border-radius: 50px !important;
+    backdrop-filter: blur(var(--blur)) !important;
+
+    /* Exakte, einheitliche Höhe */
+    height: 45px !important;
+
+    /* Vertikale Zentrierung des Inhalts */
+    display: flex !important;
+    align-items: center !important;
+
+    /* Wichtig: Entfernt vertikales Padding, das die Höhe verfälschen könnte */
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Schritt 2: Korrektur der inneren Elemente der mittleren Tableiste */
+/* Wir entfernen die feste Höhe der einzelnen Tab-Buttons, damit der Flex-Container
+   die Höhe und Zentrierung vollständig kontrollieren kann. */
+.layout-desktop .headerTabs .emby-tab-button {
+    height: auto !important;
+    margin: 0 5px !important; /* Fügt einen kleinen Abstand zwischen den Tabs hinzu */
+}
+
+/* Schritt 3: Sicherstellen, dass die Positionierung und Abstände stimmen */
+.layout-desktop .headerLeft {
+    margin-left: 15px !important;
+    padding-inline: 15px !important;
+    gap: 8px; /* Kleiner Abstand zwischen den Icons/Logo links */
+}
+
+.layout-desktop .headerRight {
+    margin-right: 15px !important;
+    padding-inline: 10px !important;
+}
+
+/* Die ursprüngliche Positionierung aus dem Theme für die mittlere Leiste beibehalten.
+   DIESE REGEL NICHT ENTFERNEN! */
+.layout-desktop .headerTabs {
+    margin-top: -58px !important;
 }
