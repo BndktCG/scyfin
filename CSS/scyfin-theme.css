@@ -1,11 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
-/* Apply Poppins to all elements */
-body, html, button, input, textarea, select {
-    font-family: 'Poppins', sans-serif !important;
-}
-
-
 /* Variables */
 :root {
     --primary-r: 0;
@@ -15,8 +7,8 @@ body, html, button, input, textarea, select {
     --secondary-accent-color: #00a4dc20;
     --primary-background-color: #000000;
     --secondary-background-color: #181818;
-    --primary-background-transparent: rgb(42 42 42 / 50%);
-    --secondary-background-transparent: rgba(0,0,0,0.6);
+    --primary-background-transparent: rgb(0 0 0 / 50%);
+    --secondary-background-transparent: rgb(0 0 0 / 60%);
     --rounded-cards: 15px;
     --blur: 10px;
 
@@ -33,7 +25,7 @@ body, html, button, input, textarea, select {
 .selectionCommandsPanel,
 .countIndicator,
 .MuiButton-root.MuiButton-containedSizeMedium,
-.MuiChip-root.MuiChip-colorInfo:not(.MuiChip-root.MuiChip-colorError),
+.MuiChip-root.MuiChip-colorInfo:not(.MuiChip-colorError),
 progress[aria-valuenow]:before {
     background: var(--primary-accent-color) !important;
 }
@@ -58,7 +50,7 @@ progress::-webkit-progress-value {
 .progressring-spiner {
     border-color: var(--primary-accent-color) !important;
 }
-.button-link:not(.itemDetailPage .button-link),
+.page:not(.itemDetailPage) .button-link,
 .selectLabelFocused,
 .textareaLabelFocused,
 .inputLabelFocused,
@@ -151,6 +143,9 @@ progress::-webkit-progress-value {
 .layout-desktop .collectionItems .collectionItemsContainer {
     padding-left: 0% !important;
 }
+.layout-desktop .collectionItems .sectionTitleContainer {
+    padding-left: 0% !important;
+}
 /* Dynamic buttons */
 .layout-desktop .navMenuOption:hover:not(.navMenuOption-selected) {
     transform: scale(1.05) !important;
@@ -171,7 +166,8 @@ progress::-webkit-progress-value {
 .cardOverlayContainer,
 .blurhash-canvas,
 .dialog,
-.itemSelectionPanel {
+.itemSelectionPanel,
+.nowPlayingPageImage {
     border-radius: var(--rounded-cards) !important;
 }
 /* Rounded selection menu */
@@ -214,7 +210,7 @@ progress::-webkit-progress-value {
 .innerCardFooter .cardText {
     padding: 0 0 0 10px !important
 }
-.itemProgressBarForeground:not(.playbackProgress .itemProgressBarForeground):not(.transcodingProgress .itemProgressBarForeground):not(.backgroundProgress .itemProgressBarForeground) {
+.cardImageContainer .innerCardFooter .itemProgressBar .itemProgressBarForeground {
     background: var(--primary-accent-color) !important;
 }
 .itemProgressBarForeground {
@@ -303,7 +299,7 @@ html,
 }
 .layout-desktop .skinHeader,
 .layout-tv .skinHeader {
-    /* padding-top: 1.5em !important; */
+    padding-top: 1.5em !important;
 }
 .layout-tv .skinHeader {
     padding-bottom: 10px !important;
@@ -434,11 +430,21 @@ html,
     top: 25px !important;
     backdrop-filter: unset !important;
 }
-.mdl-slider-background-flex {
-    height: 10px !important;
-    margin-top: -5px !important;
-    border-radius: 100px !important;
-    background: hsla(0,0%,100%,.2) !important;
+@supports selector(div:not(.parent .child)) {
+    .mdl-slider-background-flex:not(.layout-mobile .nowPlayingBar .mdl-slider-background-flex) {
+        height: 10px !important;
+        margin-top: -5px !important;
+        border-radius: 100px !important;
+        background: hsla(0,0%,100%,.2) !important;
+    }
+}
+@supports not selector(div:not(.parent .child)) {
+    .mdl-slider-background-flex {
+        height: 10px !important;
+        margin-top: -5px !important;
+        border-radius: 100px !important;
+        background: hsla(0,0%,100%,.2) !important;
+    }
 }
 .mdl-slider-background-lower {
     border-radius: 100px !important;
@@ -707,6 +713,11 @@ html,
     width: 85% !important;
     margin-inline: auto !important;
 }
+/* Fix for plugins section of dashboard */
+[aria-labelledby="plugins-subheader"].MuiList-subheader .MuiListItemButton-root.MuiListItemButton-gutters {
+    width: 85% !important;
+    margin-inline: auto !important;
+}
 .MuiList-subheader .MuiListItemButton-root.MuiListItemButton-gutters {
     border-radius: 100px !important;
     margin: 2px 0px !important;
@@ -858,6 +869,9 @@ html,
     padding: 15px 20px 5px 20px !important;
     border-radius: var(--rounded-cards) !important;
 }
+.layout-mobile .detailPageContent {
+    padding-right: 0 !important;
+}
 
 /* Add card around description */
 .layout-desktop .detailSectionContent {
@@ -907,6 +921,9 @@ html,
 /* Move description box */
 .layout-desktop .detailPagePrimaryContent {
     padding-left: 20.4vw !important;
+}
+.layout-mobile .detailPagePrimaryContent {
+    padding-right: 5% !important;
 }
 /* Padding for 2:3 posters */
 .layout-desktop .detailPageWrapperContainer:has(.detailImageContainer .portraitCard) .detailPagePrimaryContent {
@@ -1005,7 +1022,13 @@ html,
     background-size: contain !important;
     border-radius: var(--rounded-cards);
 }
-
+/* Move up content if no backdrop image is present
+@supports selector(:has(*)) {
+    .layout-desktop:not(:has(.backdropContainer .backdropImage)) #itemBackdrop {
+        height: 20vh !important;
+    }
+}
+*/
 
 
 /* Live TV */
@@ -1106,6 +1129,11 @@ html,
     border-radius: 25px !important;
     padding: 50px !important;
 }
+/* Fix padding if login disclaimer is not present */
+.layout-desktop #loginPage .padded-left.padded-right.padded-bottom-page.margin-auto-y:not(:has(.loginDisclaimer p)) {
+    padding-bottom: 100px !important;
+}
+
 .layout-desktop #loginPage .manualLoginForm .btnCancel {
     position: absolute !important;
     background: none !important;
@@ -1227,21 +1255,8 @@ html,
 }
 
 
-.cardOverlayButton-br {
-    right: auto !important; /* Entfernt die Ausrichtung nach rechts */
-    left: 50% !important;   /* Platziert den linken Rand des Buttons in der Mitte */
-    transform: translateX(-50%) !important; /* Verschiebt den Button um die Hälfte seiner eigenen Breite nach links */
-}
 
-.itemAction.textActionButton {
-    font-weight: 600 !important;
-}
-
-/* Stellt den symmetrischen Abstand für den linken Header-Bereich her */
-.layout-desktop .headerLeft {
-    margin-left: 15px !important;
-}
-
+/* ===================Mods===================== */
 
 /*
  * ===================================================================
