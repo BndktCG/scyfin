@@ -8,17 +8,17 @@ body, html, button, input, textarea, select {
 
 /* Variables */
 :root {
-    --primary-background-color: #000000;
-    --secondary-background-color: #000000;
-    --primary-background-transparent: rgb(0 0 0 / 50%);
-    --secondary-background-transparent: rgb(0 0 0 / 60%);
-    --rounded-cards: 12px;
-    --blur: 15px;
-    --primary-r: 113;
-    --primary-g: 209;
-    --primary-b: 235;
+    --primary-r: 0;
+    --primary-g: 164;
+    --primary-b: 220;
     --primary-accent-color: rgba(var(--primary-r), var(--primary-g), var(--primary-b), 1.0);
-    --secondary-accent-color: rgba(113, 209, 235, 0.2);
+    --secondary-accent-color: #00a4dc20;
+    --primary-background-color: #000000;
+    --secondary-background-color: #181818;
+    --primary-background-transparent: rgb(42 42 42 / 50%);
+    --secondary-background-transparent: rgba(0,0,0,0.6);
+    --rounded-cards: 15px;
+    --blur: 10px;
 
     /* Alternate accents*/
     --primary-alt1: rgb(calc(var(--primary-r) - 30), calc(var(--primary-g) - 30), calc(var(--primary-b) - 30), 1);
@@ -33,7 +33,7 @@ body, html, button, input, textarea, select {
 .selectionCommandsPanel,
 .countIndicator,
 .MuiButton-root.MuiButton-containedSizeMedium,
-.MuiChip-root.MuiChip-colorInfo:not(.MuiChip-colorError),
+.MuiChip-root.MuiChip-colorInfo:not(.MuiChip-root.MuiChip-colorError),
 progress[aria-valuenow]:before {
     background: var(--primary-accent-color) !important;
 }
@@ -58,7 +58,7 @@ progress::-webkit-progress-value {
 .progressring-spiner {
     border-color: var(--primary-accent-color) !important;
 }
-.page:not(.itemDetailPage) .button-link,
+.button-link:not(.itemDetailPage .button-link),
 .selectLabelFocused,
 .textareaLabelFocused,
 .inputLabelFocused,
@@ -151,9 +151,6 @@ progress::-webkit-progress-value {
 .layout-desktop .collectionItems .collectionItemsContainer {
     padding-left: 0% !important;
 }
-.layout-desktop .collectionItems .sectionTitleContainer {
-    padding-left: 0% !important;
-}
 /* Dynamic buttons */
 .layout-desktop .navMenuOption:hover:not(.navMenuOption-selected) {
     transform: scale(1.05) !important;
@@ -174,8 +171,7 @@ progress::-webkit-progress-value {
 .cardOverlayContainer,
 .blurhash-canvas,
 .dialog,
-.itemSelectionPanel,
-.nowPlayingPageImage {
+.itemSelectionPanel {
     border-radius: var(--rounded-cards) !important;
 }
 /* Rounded selection menu */
@@ -218,7 +214,7 @@ progress::-webkit-progress-value {
 .innerCardFooter .cardText {
     padding: 0 0 0 10px !important
 }
-.cardImageContainer .innerCardFooter .itemProgressBar .itemProgressBarForeground {
+.itemProgressBarForeground:not(.playbackProgress .itemProgressBarForeground):not(.transcodingProgress .itemProgressBarForeground):not(.backgroundProgress .itemProgressBarForeground) {
     background: var(--primary-accent-color) !important;
 }
 .itemProgressBarForeground {
@@ -307,7 +303,7 @@ html,
 }
 .layout-desktop .skinHeader,
 .layout-tv .skinHeader {
-    padding-top: 1.5em !important;
+    /* padding-top: 1.5em !important; */
 }
 .layout-tv .skinHeader {
     padding-bottom: 10px !important;
@@ -328,7 +324,7 @@ html,
     margin-top: -58px !important;
 }
 /* Button height */
-.,
+.headerRight,
 .emby-tab-button {
     height: 45px !important;
 }
@@ -438,21 +434,11 @@ html,
     top: 25px !important;
     backdrop-filter: unset !important;
 }
-@supports selector(div:not(.parent .child)) {
-    .mdl-slider-background-flex:not(.layout-mobile .nowPlayingBar .mdl-slider-background-flex) {
-        height: 10px !important;
-        margin-top: -5px !important;
-        border-radius: 100px !important;
-        background: hsla(0,0%,100%,.2) !important;
-    }
-}
-@supports not selector(div:not(.parent .child)) {
-    .mdl-slider-background-flex {
-        height: 10px !important;
-        margin-top: -5px !important;
-        border-radius: 100px !important;
-        background: hsla(0,0%,100%,.2) !important;
-    }
+.mdl-slider-background-flex {
+    height: 10px !important;
+    margin-top: -5px !important;
+    border-radius: 100px !important;
+    background: hsla(0,0%,100%,.2) !important;
 }
 .mdl-slider-background-lower {
     border-radius: 100px !important;
@@ -721,11 +707,6 @@ html,
     width: 85% !important;
     margin-inline: auto !important;
 }
-/* Fix for plugins section of dashboard */
-[aria-labelledby="plugins-subheader"].MuiList-subheader .MuiListItemButton-root.MuiListItemButton-gutters {
-    width: 85% !important;
-    margin-inline: auto !important;
-}
 .MuiList-subheader .MuiListItemButton-root.MuiListItemButton-gutters {
     border-radius: 100px !important;
     margin: 2px 0px !important;
@@ -877,9 +858,6 @@ html,
     padding: 15px 20px 5px 20px !important;
     border-radius: var(--rounded-cards) !important;
 }
-.layout-mobile .detailPageContent {
-    padding-right: 0 !important;
-}
 
 /* Add card around description */
 .layout-desktop .detailSectionContent {
@@ -929,9 +907,6 @@ html,
 /* Move description box */
 .layout-desktop .detailPagePrimaryContent {
     padding-left: 20.4vw !important;
-}
-.layout-mobile .detailPagePrimaryContent {
-    padding-right: 5% !important;
 }
 /* Padding for 2:3 posters */
 .layout-desktop .detailPageWrapperContainer:has(.detailImageContainer .portraitCard) .detailPagePrimaryContent {
@@ -1030,13 +1005,7 @@ html,
     background-size: contain !important;
     border-radius: var(--rounded-cards);
 }
-/* Move up content if no backdrop image is present
-@supports selector(:has(*)) {
-    .layout-desktop:not(:has(.backdropContainer .backdropImage)) #itemBackdrop {
-        height: 20vh !important;
-    }
-}
-*/
+
 
 
 /* Live TV */
@@ -1137,11 +1106,6 @@ html,
     border-radius: 25px !important;
     padding: 50px !important;
 }
-/* Fix padding if login disclaimer is not present */
-.layout-desktop #loginPage .padded-left.padded-right.padded-bottom-page.margin-auto-y:not(:has(.loginDisclaimer p)) {
-    padding-bottom: 100px !important;
-}
-
 .layout-desktop #loginPage .manualLoginForm .btnCancel {
     position: absolute !important;
     background: none !important;
@@ -1262,57 +1226,73 @@ html,
     backdrop-filter: blur(var(--blur)) !important;
 }
 
+
+.cardOverlayButton-br {
+    right: auto !important; /* Entfernt die Ausrichtung nach rechts */
+    left: 50% !important;   /* Platziert den linken Rand des Buttons in der Mitte */
+    transform: translateX(-50%) !important; /* Verschiebt den Button um die Hälfte seiner eigenen Breite nach links */
+}
+
+.itemAction.textActionButton {
+    font-weight: 600 !important;
+}
+
 /* Stellt den symmetrischen Abstand für den linken Header-Bereich her */
 .layout-desktop .headerLeft {
     margin-left: 15px !important;
 }
 
-/* Blendet nur die mittlere Tableiste im Header aus */
-.layout-desktop .headerTabs {
-    display: none !important;
-}
-
-
-
-
-
-.raised.homeLibraryButton.emby-button {
-    /* 1. Add more padding, especially on the right side */
-    padding: 0.5em 1.5em !important; /* 0.5em top/bottom, 1.5em left/right */
-
-    /* 2. Add a border */
-    border: 2px solid rgb(139 139 139 / 15%) !important;
-
-    /* Optional: Make the corners a bit more rounded */
-    border-radius: 500px !important;
-
-    /* Optional: Add a subtle transition for a smoother hover effect */
-    transition: background-color 0.2s, border-color 0.2s;
-}
-
-/* Optional: Slightly change the look on hover for better user feedback */
-.raised.homeLibraryButton.emby-button:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    border-color: rgba(255, 255, 255, 0.3) !important;
-}
 
 /*
  * ===================================================================
- * Center the overlay play button on all cards
+ * Header-Vereinheitlichung: Stellt sicher, dass alle drei Header-
+ * Elemente (links, mitte, rechts) identisch aussehen und ausgerichtet sind.
  * ===================================================================
  */
-.cardOverlayButton-br {
-    /* Set positioning relative to the parent card */
-    position: absolute !important;
 
-    /* Move the button's top-left corner to the center of the card */
-    top: 90% !important;
-    left: 50% !important;
+/* Schritt 1: Ein einheitlicher Stil für alle drei "Pillen" */
+.layout-desktop .headerLeft,
+.layout-desktop .headerTabs,
+.layout-desktop .headerRight {
+    /* Aussehen der Pille */
+    background-color: var(--primary-background-transparent) !important;
+    border-radius: 50px !important;
+    backdrop-filter: blur(var(--blur)) !important;
 
-    /* Reset the default bottom-right alignment */
-    right: auto !important;
-    bottom: auto !important;
+    /* Exakte, einheitliche Höhe */
+    height: 45px !important;
 
-    /* Shift the button by half of its own width and height to perfectly center it */
-    transform: translate(-50%, -50%) !important;
+    /* Vertikale Zentrierung des Inhalts */
+    display: flex !important;
+    align-items: center !important;
+
+    /* Wichtig: Entfernt vertikales Padding, das die Höhe verfälschen könnte */
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Schritt 2: Korrektur der inneren Elemente der mittleren Tableiste */
+/* Wir entfernen die feste Höhe der einzelnen Tab-Buttons, damit der Flex-Container
+   die Höhe und Zentrierung vollständig kontrollieren kann. */
+.layout-desktop .headerTabs .emby-tab-button {
+    height: auto !important;
+    margin: 0 5px !important; /* Fügt einen kleinen Abstand zwischen den Tabs hinzu */
+}
+
+/* Schritt 3: Sicherstellen, dass die Positionierung und Abstände stimmen */
+.layout-desktop .headerLeft {
+    margin-left: 15px !important;
+    padding-inline: 15px !important;
+    gap: 8px; /* Kleiner Abstand zwischen den Icons/Logo links */
+}
+
+.layout-desktop .headerRight {
+    margin-right: 15px !important;
+    padding-inline: 10px !important;
+}
+
+/* Die ursprüngliche Positionierung aus dem Theme für die mittlere Leiste beibehalten.
+   DIESE REGEL NICHT ENTFERNEN! */
+.layout-desktop .headerTabs {
+    margin-top: -58px !important;
 }
