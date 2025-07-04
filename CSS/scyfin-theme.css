@@ -1311,3 +1311,25 @@ html,
 .layout-desktop .headerTabs {
     margin-top: -58px !important;
 }
+
+
+/*
+ * ===================================================================
+ * Center the overlay play button on all cards
+ * ===================================================================
+ */
+.cardOverlayButton-br {
+    /* Set positioning relative to the parent card */
+    position: absolute !important;
+
+    /* Move the button's top-left corner to the center of the card */
+    top: 90% !important;
+    left: 50% !important;
+
+    /* Reset the default bottom-right alignment */
+    right: auto !important;
+    bottom: auto !important;
+
+    /* Shift the button by half of its own width and height to perfectly center it */
+    transform: translate(-50%, -50%) !important;
+}
