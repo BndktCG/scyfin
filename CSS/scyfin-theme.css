@@ -1,8 +1,8 @@
 /* Variables */
 :root {
-    --primary-r: 0;
-    --primary-g: 164;
-    --primary-b: 220;
+    --primary-r: 164;
+    --primary-g: 181;
+    --primary-b: 186;
     --primary-accent-color: rgba(var(--primary-r), var(--primary-g), var(--primary-b), 1.0);
     --secondary-accent-color: #00a4dc20;
     --primary-background-color: #000000;
@@ -91,6 +91,8 @@ progress::-webkit-progress-value {
     /* Move drawer behind header */
     z-index: 998 !important;
 }
+
+
 /* Lower drawer buttons */
 .layout-desktop .mainDrawer-scrollContainer {
     margin-top: 95px !important;
