@@ -1333,3 +1333,31 @@ html,
     /* Shift the button by half of its own width and height to perfectly center it */
     transform: translate(-50%, -50%) !important;
 }
+
+
+/*
+ * ===================================================================
+ * Home Screen Library Buttons: Adds more padding and a border.
+ * ===================================================================
+ */
+
+/* Selects the library buttons on the home screen */
+.raised.homeLibraryButton.emby-button {
+    /* 1. Add more padding, especially on the right side */
+    padding: 0.5em 1.5em !important; /* 0.5em top/bottom, 1.5em left/right */
+
+    /* 2. Add a border */
+    border: 1px solid rgb(255 255 255 / 15%) !important;
+
+    /* Optional: Make the corners a bit more rounded */
+    border-radius: 100px !important;
+
+    /* Optional: Add a subtle transition for a smoother hover effect */
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* Optional: Slightly change the look on hover for better user feedback */
+.raised.homeLibraryButton.emby-button:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
