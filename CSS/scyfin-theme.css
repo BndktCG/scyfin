@@ -1361,3 +1361,8 @@ html,
     background-color: rgba(255, 255, 255, 0.1) !important;
     border-color: rgba(255, 255, 255, 0.3) !important;
 }
+
+/* Blendet nur die mittlere Tableiste im Header aus */
+.layout-desktop .headerTabs {
+    display: none !important;
+}
