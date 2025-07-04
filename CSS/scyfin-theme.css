@@ -1366,3 +1366,20 @@ html,
 .layout-desktop .headerTabs {
     display: none !important;
 }
+
+
+/*
+ * ===================================================================
+ * Hintergrundfarbe für die Home-Screen-Buttons ändern
+ * ===================================================================
+ */
+
+/* Grundfarbe für die Buttons */
+.raised.homeLibraryButton.emby-button {
+    background-color: #000000 !important; /* Ihr gewünschter Farbwert hier */
+}
+
+/* Optional, aber empfohlen: Eine leicht hellere Farbe beim Hovern */
+.raised.homeLibraryButton.emby-button:hover {
+    background-color: #151515 !important; /* Ein etwas hellerer Farbton */
+}
